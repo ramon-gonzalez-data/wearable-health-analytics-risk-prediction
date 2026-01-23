@@ -1,16 +1,23 @@
 # Wearable Health Analytics
 
-End-to-end wearable health data analytics project using Python, PostgreSQL, and time-series analysis.
+End-to-end wearable health data analytics project simulating wearable device data
+used by health insurance and health tech companies.
+
+# Project goals
+- Simulate wearable health device data
+- Store and analyze patient vitals
+- Detect anomalies and risk conditions
+- Generate automated health alerts
+- Visualize insights in Tableau
 
 # Tech Stack
 - Python (pandas, numpy)
 - PostgreSQL
 - SQL
-- Git & GitHub
+- Tableau
+- Pandas
+- Time-series analytics
 
-# Background
-- Google Data Analytics Professional Certificate (coursera)
-- Time series Analysis (coursera)
 
 # Project Structure
 See repository folders for raw data, processed data, SQL schemas, and analytics queries.
