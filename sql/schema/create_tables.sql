@@ -14,8 +14,7 @@ CREATE TABLE IF NOT EXISTS members (
    first_name		TEXT NOT NULL,
    last_name		TEXT NOT NULL,
    date_of_birth	DATE NOT NULL,
-   gender		TEXT CHECK (
-      gender IN ('Male', 'Female', 'Non-binary', 'Other', 'Prefer not to say', 'Unknown')),
+   sex_at_birth		TEXT CHECK (sex_at_birth IN ('male', 'female')),
    phone		TEXT,
    email		TEXT,
    city			TEXT,
