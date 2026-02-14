@@ -33,3 +33,25 @@ The schema is designed using crow's-foot notation and includes:
 - full historical tracking of device assignments
 
 ![ER Diagram](docs/er_diagram.png)
+
+# Development Environment & Architecture
+
+This project was develop using a multi-environment architecture to closely simulate real-world data engineering workflows.
+
+The system is intentionally separated into independent environments, reflecting how modern data platforms operate in production and cloud-based infrastructures.
+
+## Environment Overview
+
+** VM1 - Application & Data Processing Layer **
+- Python-based data generation
+- Synthetic wearable time-series data creation
+- CSV export for ingestion
+- Git version control
+
+** VM2 - Database & Analytics Layer **
+- PostgreSQL relational database
+_ Schema design and implementation
+- Foreign key and constraint enforcement
+- Analytical SQL queries and validation
+
+Both environments run on Linux virtual machines (KVM) and interact through GitHub, replicating the separation commonly found between application services and database system in production environments.
