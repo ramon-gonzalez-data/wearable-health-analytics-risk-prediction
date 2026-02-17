@@ -1,0 +1,100 @@
+New York	NY	10001
+Los Angeles	CA	90001
+Chicago	IL	60601
+Houston	TX	77001
+Phoenix	AZ	85001
+Philadelphia	PA	19101
+San Antonio	TX	78201
+San Diego	CA	92101
+Dallas	TX	75201
+San Jose	CA	95101
+Austin	TX	73301
+Seattle	WA	98101
+Denver	CO	80201
+Boston	MA	02108
+Atlanta	GA	30301
+Miami	FL	33101
+Orlando	FL	32801
+Tampa	FL	33601
+Nashville	TN	37201
+Raleigh	NC	27601
+Durham	NC	27701
+Chapel Hill	NC	27514
+Madison	WI	53703
+Minneapolis	MN	55401
+St. Paul	MN	55101
+San Francisco	CA	94102
+Oakland	CA	94601
+Berkeley	CA	94704
+Palo Alto	CA	94301
+Mountain View	CA	94041
+Buffalo	NY	14201
+Rochester	NY	14602
+Albany	NY	12207
+Syracuse	NY	13202
+Cleveland	OH	44101
+Columbus	OH	43201
+Cincinnati	OH	45201
+Detroit	MI	48201
+Ann Arbor	MI	48104
+St. Louis	MO	63101
+Kansas City	MO	64101
+Milwaukee	WI	53201
+Des Moines	IA	50301
+Omaha	NE	68101
+Birmingham	AL	35201
+Montgomery	AL	36101
+Jackson	MS	39201
+Baton Rouge	LA	70801
+New Orleans	LA	70112
+Little Rock	AR	72201
+Memphis	TN	37501
+Louisville	KY	40201
+Lexington	KY	40502
+Charleston	SC	29401
+Boise	ID	83701
+Salt Lake City	UT	84101
+Provo	UT	84601
+Flagstaff	AZ	86001
+Tucson	AZ	85701
+Santa Fe	NM	87501
+Albuquerque	NM	87101
+Reno	NV	89501
+Las Vegas	NV	88901
+Spokane	WA	99201
+Portland	OR	97201
+Eugene	OR	97401
+Salem	OR	97301
+Bend	OR	97701
+Medford	OR	97501
+Corvallis	OR	97330
+Providence	RI	02903
+Hartford	CT	06103
+New Haven	CT	06510
+Bridgeport	CT	06604
+Stamford	CT	06901
+Norwalk	CT	06850
+Waterbury	CT	06702
+Danbury	CT	06810
+New Britain	CT	06051
+West Hartford	CT	06107
+Portland	ME	04101
+Bangor	ME	04401
+Augusta	ME	04330
+Lewiston	ME	04240
+Auburn	ME	04210
+Biddeford	ME	04005
+Saco	ME	04072
+Brunswick	ME	04011
+Bath	ME	04530
+Rockland	ME	04841
+Burlington	VT	05401
+Montpelier	VT	05602
+Rutland	VT	05701
+Barre	VT	05641
+St. Albans	VT	05478
+Winooski	VT	05404
+South Burlington	VT	05403
+Essex	VT	05452
+Colchester	VT	05446
+Shelburne	VT	05482
