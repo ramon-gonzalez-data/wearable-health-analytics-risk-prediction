@@ -1,0 +1,106 @@
+device_type,manufacturer,model
+smartwatch,Apple,Watch Series 6
+smartwatch,Apple,Watch Series 7
+smartwatch,Apple,Watch Series 8
+smartwatch,Apple,Watch Series 9
+smartwatch,Apple,Watch Ultra
+smartwatch,Apple,Watch Ultra 2
+smartwatch,Apple,Watch SE (2nd Gen)
+smartwatch,Samsung,Galaxy Watch 4
+smartwatch,Samsung,Galaxy Watch 5
+smartwatch,Samsung,Galaxy Watch 5 Pro
+smartwatch,Samsung,Galaxy Watch 6
+smartwatch,Samsung,Galaxy Watch 6 Classic
+smartwatch,Garmin,Venu 2
+smartwatch,Garmin,Venu 3
+smartwatch,Garmin,Forerunner 255
+smartwatch,Garmin,Forerunner 265
+smartwatch,Garmin,Forerunner 955
+smartwatch,Garmin,Fenix 7
+smartwatch,Garmin,Epix (Gen 2)
+smartwatch,Fitbit,Sense
+smartwatch,Fitbit,Sense 2
+smartwatch,Fitbit,Versa 3
+smartwatch,Fitbit,Versa 4
+smartwatch,Withings,ScanWatch
+smartwatch,Withings,ScanWatch 2
+smartwatch,Withings,Steel HR
+smartwatch,Withings,Move
+smartwatch,Withings,ScanWatch Light
+smartwatch,Amazfit,GTS 4
+smartwatch,Amazfit,GTR 4
+smartwatch,Amazfit,Bip 3
+smartwatch,Amazfit,Bip 5
+smartwatch,Amazfit,T-Rex 2
+smartwatch,Amazfit,Balance
+smartwatch,Polar,Vantage V2
+smartwatch,Polar,Vantage V3
+smartwatch,Polar,Grit X
+smartwatch,Polar,Grit X Pro
+smartwatch,Polar,Ignite 3
+smartwatch,Suunto,Suunto 7
+smartwatch,Suunto,Suunto 9
+smartwatch,Suunto,Suunto 9 Peak
+smartwatch,Suunto,Suunto 9 Peak Pro
+smartwatch,Suunto,Suunto Vertical
+fitness_tracker,Fitbit,Charge 4
+fitness_tracker,Fitbit,Charge 5
+fitness_tracker,Fitbit,Charge 6
+fitness_tracker,Fitbit,Inspire 2
+fitness_tracker,Fitbit,Inspire 3
+fitness_tracker,Fitbit,Luxe
+fitness_tracker,Garmin,Vivosmart 4
+fitness_tracker,Garmin,Vivosmart 5
+fitness_tracker,Garmin,Vivosport
+fitness_tracker,Garmin,Vivofit 4
+fitness_tracker,Garmin,Lily
+fitness_tracker,Amazfit,Band 5
+fitness_tracker,Amazfit,Band 7
+fitness_tracker,Amazfit,Band 7 Pro
+fitness_tracker,WHOOP,WHOOP 3.0
+fitness_tracker,WHOOP,WHOOP 4.0
+smart_ring,Oura,Oura Ring Gen2
+smart_ring,Oura,Oura Ring Gen3
+smart_ring,Oura,Oura Ring Gen3 Horizon
+smart_ring,Samsung,Galaxy Ring
+smart_ring,Ultrahuman,Ring Air
+smart_ring,RingConn,RingConn Smart Ring
+glucose_monitor,Dexcom,G6
+glucose_monitor,Dexcom,G7
+glucose_monitor,Abbott,FreeStyle Libre 2
+glucose_monitor,Abbott,FreeStyle Libre 3
+glucose_monitor,Medtronic,Guardian Sensor 3
+glucose_monitor,Medtronic,Guardian 4
+glucose_monitor,Senseonics,Eversense E3
+blood_pressure_monitor,Omron,Evolv
+blood_pressure_monitor,Omron,Platinum
+blood_pressure_monitor,Omron,Silver
+blood_pressure_monitor,Omron,Gold
+blood_pressure_monitor,Omron,Complete
+blood_pressure_monitor,Withings,BPM Connect
+blood_pressure_monitor,Withings,BPM Core
+blood_pressure_monitor,Garmin,Index BPM
+blood_pressure_monitor,A&D Medical,UA-651
+blood_pressure_monitor,A&D Medical,UA-767F
+blood_pressure_monitor,A&D Medical,UA-789
+blood_pressure_monitor,A&D Medical,UA-1020
+blood_pressure_monitor,Qardio,QardioArm
+ecg_monitor,AliveCor,KardiaMobile
+ecg_monitor,AliveCor,KardiaMobile 6L
+ecg_monitor,AliveCor,KardiaMobile Card
+ecg_monitor,iRhythm,Zio Patch
+ecg_monitor,Polar,H10
+ecg_monitor,Polar,H9
+ecg_monitor,Polar,Verity Sense
+ecg_monitor,Garmin,HRM-Pro
+ecg_monitor,Garmin,HRM-Pro Plus
+ecg_monitor,Garmin,HRM-Dual
+ecg_monitor,Wahoo,TICKR
+ecg_monitor,Wahoo,TICKR X
+ecg_monitor,Wahoo,TICKR FIT
+pulse_oximeter,Nonin,Onyx Vantage 9590
+pulse_oximeter,Nonin,Onyx II 9550
+pulse_oximeter,Masimo,MightySat
+pulse_oximeter,Masimo,MightySat Rx
+pulse_oximeter,Zacurate,Pro Series 500DL
+pulse_oximeter,Zacurate,Pro Series 700
