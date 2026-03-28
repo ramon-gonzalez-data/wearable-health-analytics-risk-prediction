@@ -2,5 +2,5 @@
 - This file contains a list of files or filenames patterns for Git to skip for the current repo.
 
 # Data files (keep folders only)
-data/raw/*.csv
 data/processed/*.csv
+data/raw/*.csv
