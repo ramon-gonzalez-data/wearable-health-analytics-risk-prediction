@@ -1,8 +1,18 @@
 # Libraries :
 from pathlib import Path
-import random
 import numpy as np
 import pandas as pd
+
+####################################
+### Configuration  ###
+####################################
+
+NUM_MEMBERS = 100  # Number of members to be created.
+
+SEED = 42
+
+# Create a random generator object in order to get reproducible data
+rng = np.random.default_rng(SEED)
 
 
 # Input Path 
@@ -18,16 +28,10 @@ REPO_ROOT = Path(__file__).resolve().parents[1]  # REPO_ROOT => top of git proje
 OUTPUT_PATH = REPO_ROOT / "data" / "raw" / "members_raw.csv"
 
 
-####################################
-### Global Variables Declaration ###
-####################################
-
-NUM_MEMBERS = 100  # Number of members to be created.
-
 first_name_list = [] # This list will be filled up from the firstname.txt file
 last_name_list = [] #  This list will be filled up from the lastname.txt file
 
-# We keep sex_at_birth limited to biological male/female to match the DB CHECK constraint
+# sex_at_birth is limited to biological male/female to match the DB CHECK constraint
 sex_at_birth = ['male', 'female']
 
 # The members_dict will store all the key-values related to members table.
@@ -52,19 +56,17 @@ location_dict = {'city': [],
 }
 
 # age_group_dict
-# The 'born_year" key will be used to store each member born-year, from 1931 to 2008 (18-95 years old)
-# The 'service_probability' key stores the probability that a member that belongs to 'X' year
-# use the service
+# The 'born_year" key will be used to store a year from 1931 to 2008. This means 18-95 years old.
+# The 'service_probability' key stores the probability that a year can be used
 age_group_dict = {'born_year': [],
                 'service_probability': []
 }
 
 
-
 ##############################
 # load_first_names Function 
 ##############################
-# This function open the first_name.txt and load it into a first_name list   
+# This function reads the first_name.txt file and load its content into the first_name list   
 
 def load_first_name_list():
     
@@ -74,7 +76,7 @@ def load_first_name_list():
             line = line.rstrip()
             first_name_list.append(line)  
     
-    #Debug to test if there are 100 first-names    
+    #Debug.  Test if there are 100 first-names    
     assert len(first_name_list) == 100
     
     fhand.close() # Close the first-name file 
@@ -83,7 +85,7 @@ def load_first_name_list():
 #############################
 # load_last_names Function 
 ##############################
-# This function open the last_name.txt file and load it into a last_name list 
+# This function reads the last_name.txt file and load its content into the last_name list 
 
 def load_last_name_list():
     
@@ -107,14 +109,15 @@ def load_age_group_by_year():
 
 
 # Segmented age-group (This is only an assumption that will be reflected in the age-group file)
-#Age-group   Born-Year                   % of users that probably will use service
-#75+         1931-1951 (21 years)        3%  / 21 = 0.142857% per year (techincal barrier)
-#65-74       1952-1961 (10 years)        14% / 10 = 1.4% per year
-#55-64       1962-1971 (10 years)        25% / 10 = 2.5% per year
-#45-54       1972-1981 (10 years)        27% / 10 = 2.7% per year
-#35-44       1982-1991 (10 years)        18% / 10 = 1.8% per year
-#25-34       1992-2001 (10 years)        10% / 10 = 1.0% per year
-#18-24       2002-2008 (7 years)         3%  / 7 = 0.428571% per year
+
+#Age-group   Born-Year                           Percentaje of users that will use service
+#75+         1931-1951 (include 21 years)        3%  --  3  / 21 = 0.142857% per year (techincal barrier)
+#65-74       1952-1961 (include 10 years)        14% --  14 / 10 = 1.4% per year
+#55-64       1962-1971 (include 10 years)        25% --  25 / 10 = 2.5% per year
+#45-54       1972-1981 (include 10 years)        27% --  27 / 10 = 2.7% per year
+#35-44       1982-1991 (include 10 years)        18% --  18 / 10 = 1.8% per year
+#25-34       1992-2001 (include 10 years)        10% --  10 / 10 = 1.0% per year
+#18-24       2002-2008 (include 7 years)         3%  --   3 / 7 = 0.428571% per year
 
      
     # Used input path (AGE_GROUP) to open the file
@@ -128,7 +131,7 @@ def load_age_group_by_year():
     # Convert string values from key 'service_probability' to float values
     float_probabilities = [float(item) for item in age_group_dict['service_probability']]
    
-    # Verify the sum of all probabilites if they are near 100 or 99.9999 
+    # Debug to verify the sum of all probabilites if they are near 100 or 99.9999 
     DEBUG = False
     
     if DEBUG:
@@ -169,36 +172,44 @@ def load_cities_list():
 #####################################
 # Generate_date_of_birth Function 
 #####################################
-def generate_date_of_birth():
-# This function generates a random date of birth in the format yyyy-mm-dd
+def generate_date_of_birth(rng):
+# This function generates a date of birth in the format yyyy-mm-dd.  It uses the object random generador as input
 # The function returns a date_of_birth string  
     
-    # Convert 'service_probabity' values to float
-    float_probabilities = [float(item) for item in age_group_dict['service_probability']]
+    # Convert string 'service_probabity' values to float. The values are in percentaje.
+    service_probability_float = [float(item) for item in age_group_dict['service_probability']]
    
-    # Choose a random year-born using probabilites with weights
-    random_year_born = random.choices(age_group_dict['born_year'], weights=float_probabilities, k=1)
+    # Convert each service_probability_float from percentaje to probability (In order to sum 1)
+    # It is needed because we will have to normalize the list values to use in rng.choice
+    probs = [weights / sum(service_probability_float) for weights in service_probability_float]
+       
+    # Verify the sum of probabilites.   
+    DEBUG = False
     
-    # Convert list type to str type in order to take off brackets and single-quote from list
-    random_year_born = str(random_year_born)
-    
-    #Take off brackets from random_year_born
-    random_year_born = random_year_born.replace("[",'').replace("]",'')
+    if DEBUG:
+        without_norm = sum(service_probability_float) #Check if sum probabilites are 100 for age-group
+        print(f"Without normalization, sum equals to: {without_norm}")
+       
+        # This is a requirement from Numpy (sum should be exactly = 1) to use probabilities in rng.choice
+        with_norm = sum(probs)
+        print(f"After normalization, sum equals to: {with_norm}")
+       
   
-    #Take off single-quote from random_year_born
-    random_year_born = random_year_born.replace("'",'').replace("'",'')
-          
-    #Create a random month from January (1) to December (12)
-    random_month_born = random.randint(1,12)
+    # Choose a random year-born using probabilites with weights
+    random_year_born = rng.choice(age_group_dict['born_year'], p=probs)
+    
+    
+    # Create a random month from January (1) to December (12)
+    random_month_born = rng.integers(1,12)
     
             
     # Determine the number of days that a month can have. Leap year is not taking into account
     if random_month_born == (1 or 3 or 5 or 7 or 8 or 10 or 12): # months can have 31 days
-        random_day_born = random.randint(1,31)
+        random_day_born = rng.integers(1,31)
     elif random_month_born == (4 or 6 or 9 or 11): # months can have 30 days
-        random_day_born = random.randint(1,30)  
+        random_day_born = rng.integers(1,30)  
     else:
-        random_day_born = random.randint(1,28)  # month number 2 (Feb) can have 28 days. 
+        random_day_born = rng.integers(1,28)  # month number 2 (Feb) can have 28 days. 
     
         
     # Verify if month has 1 digit and add "0" to the left
@@ -225,17 +236,20 @@ load_last_name_list()  # Load last name from a txt file to a list
 load_age_group_by_year() # Load age-group and stored in a dic
 load_cities_list() # Load cities, states, zip_code from a txt file and store in a dictionary
 
+
+
+
 # Fill up the members dictionary using for loop
 for i in range(1, NUM_MEMBERS + 1):
     
-    first_name = random.choice(first_name_list) # Choose randomly a first-name
-    last_name = random.choice(last_name_list)   # Choose randomly a last-name
+    first_name = str(rng.choice(first_name_list)) # Choose randomly a first-name
+    last_name = str(rng.choice(last_name_list))   # Choose randomly a last-name
     
     #Determine the length of one of the lists of "location_dict" (all should be the same)
     length = len(location_dict['city'])
     
     # Generate a random index to choose city, state and zip_code
-    random_index = random.randrange(length) # Random number from 0 up to but not included length
+    random_index = rng.integers(length) # Random number from 0 up to but not included length
     
     
     ## Choose randomly the city, state and zip_code using the same index
@@ -248,15 +262,15 @@ for i in range(1, NUM_MEMBERS + 1):
     members_dict['external_member_id'].append(f"M-{100000+i}")
     members_dict['first_name'].append(first_name)
     members_dict['last_name'].append(last_name)
-    members_dict['date_of_birth'].append(generate_date_of_birth())
-    members_dict['sex_at_birth'].append(random.choice(sex_at_birth))
-    members_dict['phone'].append(f"+1-555-{random.randint(1000,9999)}")
+    members_dict['date_of_birth'].append(generate_date_of_birth(rng))
+    members_dict['sex_at_birth'].append(str(rng.choice(sex_at_birth)))
+    members_dict['phone'].append(f"+1-555-{rng.integers(1000,9999)}")
     members_dict['email'].append(f"{first_name.lower()}.{last_name.lower()}{i}@example.com")
     members_dict['city'].append(random_city)
     members_dict['state'].append(random_state)
     members_dict['zip_code'].append(random_zip_code)
     members_dict['country'].append("United_States")
       
-# Generate a dataframe and store in the output_path
-dataframe = pd.DataFrame(members_dict)
+     
+dataframe = pd.DataFrame(members_dict) # Generate a dataframe and store in the output_path
 dataframe.to_csv(OUTPUT_PATH, index=False) # Dataframe will be saved in a .csv file
