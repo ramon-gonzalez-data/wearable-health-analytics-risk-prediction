@@ -1,9 +1,18 @@
 # Libraries :
 from pathlib import Path
-import random
 import numpy as np
 import pandas as pd
 
+####################################
+### Configuration  ###
+####################################
+
+FIXED_NUM_DEVICES = 100  # Number of devices to be created.
+
+SEED = 42
+
+# Create a random generator object in order to get reproducible data
+rng = np.random.default_rng(SEED)
 
 # Input Path 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -14,15 +23,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]  # REPO_ROOT => top of git proje
 OUTPUT_PATH = REPO_ROOT / "data" / "raw" / "devices_raw.csv"
 
 
-
-####################################
-### Global Variables Declaration ###
-####################################
-
-FIXED_NUM_DEVICES = 100  # Number of devices to be created.
-
-# The catalog_dict will store information about a device like type, manufacturear and model
-# Later, randomly one device will picked and load it into the devices dict
+# The catalog_dict will store information about a device type, manufacturear and model
+# Later, one device will be picked up  and load it into the devices dict
 catalog_dict = {'device_type': [],
                 'manufacturer': [],
                 'model': [],
@@ -30,9 +32,9 @@ catalog_dict = {'device_type': [],
                 }
 
 
-# The devices_dict will store all information required for a wearable device like its serial number,
-# device type, manufacturer, model and if it support a simcard or not.
-# Later, it will be converted to a tabular format using a dataframe
+# The devices_dict will store all information required for a wearable device as serial number,
+# device type, manufacturer, model and if it support a simcard or not (sim_type).
+# Later, it will be converted intoto a tabular format using a dataframe
 
 devices_dict = {'device_serial': [],
                 'device_type': [],
@@ -50,7 +52,7 @@ def load_device_catalog():
     
     # Used input path (DEVICES_PATH) to open the file
     with open(DEVICES_PATH, "r", encoding="utf-8") as fhand:
-        is_header = True  # Header Flag (first row hast attributes)
+        is_header = True  # Header Flag (the first row of the file has attributes)
         for line in fhand:
             if is_header:  # Check first row and skip attributes/columns
                 is_header = False
@@ -62,7 +64,7 @@ def load_device_catalog():
                 catalog_dict['model'].append(split_break[2]) # Item2 goes to model
         
         #Determine how many rows or items has the catalog.
-        # Later the length will be used for picking a device randomly 
+        # Later the length will be used for picking a device with random generator 
         catalog_dict['length'] = len(catalog_dict['device_type'])
                 
         #Debug to test if there are 105 devices in catalog    
@@ -78,8 +80,8 @@ def load_device_catalog():
 # Received the "i" iterator as input
 
 def make_serial_number(index):
-    serial_date = pd.Timestamp("2026-02") # Use a fixed date constant
-    hex_tag = f"{random.randint(0, 0xFFFF):04X}" #Hex random number (0000–FFFF) using 4digit
+    serial_date = pd.Timestamp("2026-03") # Use a fixed date constant
+    hex_tag = f"{rng.integers(0, 0xFFFF):04X}" #Hex number (0000–FFFF) using 4digit
     counter = f"{index:06d}" #Use index to form 6 digit counter (000001-00000i) 
     date_tag = serial_date.strftime("%Y%m") #strftime method will customize the date format
     serial = f"DEV-{date_tag}-{hex_tag}-{counter}"  # Create the serial number
@@ -100,9 +102,9 @@ def pick_random_device():
     
     # Generate a random index
     # The choosen index will be used to pick a device
-    random_index = random.randrange(catalog_dict['length']) # Random number from 0 up to but not included length
+    random_index = rng.integers(catalog_dict['length']) # Random number from 0 up to but not included length
         
-    # Store the choosen device in string variables
+    # Pick the device_type, manufacturer and model ramdonly
     random_device_type = catalog_dict['device_type'][random_index]
     random_manufacturer = catalog_dict['manufacturer'][random_index]
     random_model = catalog_dict['model'][random_index]
@@ -118,16 +120,7 @@ def pick_random_device():
         devices_dict['sim_type'].append(None)
     else:
         # Use probabilities of market fo pick up the simcard type
-        random_sim_type = random.choices(SIM_VALUES, weights=SIM_PROBS, k=1)
-        
-        # Convert list to str in order to take off brackets and single-quote from list
-        random_sim_type = str(random_sim_type)
-    
-        #Take off brackets from random_sim_type
-        random_sim_type = random_sim_type.replace("[",'').replace("]",'')
-  
-        #Take off single-quote from random_sim_type
-        random_sim_type = random_sim_type.replace("'",'').replace("'",'')
+        random_sim_type = rng.choice(SIM_VALUES, p=SIM_PROBS)
         
         # Load the sim_type to the device dictionary   
         devices_dict['sim_type'].append(random_sim_type)
