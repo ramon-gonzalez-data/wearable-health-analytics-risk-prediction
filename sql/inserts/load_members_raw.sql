@@ -1,0 +1,1 @@
+\copy members (external_member_id, first_name, last_name, date_of_birth, sex_at_birth, phone, email, city, state, zip_code, country) FROM '/home/your_user/wearable-health-analytics/data/raw/members_raw.csv' WITH (FORMAT csv, HEADER true, NULL '');
