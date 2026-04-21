@@ -4,3 +4,4 @@
 # Data files (keep folders only)
 data/processed/*.csv
 data/raw/*.csv
+python/*.csv
