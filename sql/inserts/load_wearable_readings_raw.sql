@@ -1,0 +1,1 @@
+\copy wearable_readings (member_id,device_id,recorded_at,heart_rate_bpm,systolic_mmHg,diastolic_mmHg,glucose_mg_dl,spo2_pct) FROM '/path/to/wearable_readings_raw.csv' WITH (FORMAT csv, HEADER true, NULL '');
