@@ -1,0 +1,12 @@
+feature,importance
+avg_systolic_bp,0.25553504
+max_systolic_bp,0.2532592
+min_spo2,0.22256184
+avg_glucose,0.09321755
+age,0.050596677
+max_heart_rate,0.04995741
+avg_spo2,0.028640937
+max_glucose,0.021531079
+max_diastolic_bp,0.014288878
+avg_heart_rate,0.010411412
+avg_diastolic_bp,0.0
