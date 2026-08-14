@@ -1,7 +1,11 @@
 # Gitignore
-- This file contains a list of files or filenames patterns for Git to skip for the current repo.
+# Files and filename patterns that Git should ignore for this repository.
 
-# Data files (keep folders only)
-data/processed/*.csv
+# Raw data files generated locally
 data/raw/*.csv
-python/*.csv
+
+# Intermediate CSV files used during data generation
+# These files are required during local data generation, but are intermediate artifacts and are not version-controlled.
+python/devices_full.csv
+python/member_devices_full.csv
+python/members_full.csv
