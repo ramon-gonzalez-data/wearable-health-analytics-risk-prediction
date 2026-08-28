@@ -65,36 +65,6 @@ CREATE TABLE IF NOT EXISTS wearable_readings (
    created_at	   TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- -------------------------
--- 5) TELEMEDICINE_VISITS
--- ------------------------
-CREATE TABLE IF NOT EXISTS telemedicine_visits (
-   visit_id         BIGSERIAL PRIMARY KEY,       
-   member_id        BIGINT NOT NULL REFERENCES members(member_id) ON DELETE CASCADE,
-   visit_start_at   TIMESTAMPTZ NOT NULL,
-   visit_end_at     TIMESTAMPTZ,
-   clinician_name   TEXT,
-   reason	    TEXT,
-   notes	    TEXT,
-   created_at	    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-   CONSTRAINT chk_telemed_dates CHECK (visit_end_at IS NULL OR visit_end_at >= visit_start_at)
-);
-
--- -----------------------
--- 6) ALERTS_GENERATED
--- ------------------------
-CREATE TABLE IF NOT EXISTS alerts_generated (
-   alert_id	      BIGSERIAL PRIMARY KEY,
-   member_id	      BIGINT NOT NULL REFERENCES members(member_id) ON DELETE CASCADE,
-   reading_id	      BIGINT REFERENCES wearable_readings(reading_id) ON DELETE SET NULL,
-   alert_type	      TEXT NOT NULL,
-   severity	      TEXT NOT NULL CHECK (severity IN ('low', 'medium', 'high', 'critical')),
-   alert_message      TEXT,
-   triggered_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-   acknowledged_at    TIMESTAMPTZ,
-   CONSTRAINT chk_alert_ack_time CHECK (acknowledged_at IS NULL OR acknowledged_at >= triggered_at)
-);
-
 COMMIT;
 
 
