@@ -6,6 +6,10 @@ data/raw/*.csv
 
 # Intermediate CSV files used during data generation
 # These files are required during local data generation, but are intermediate artifacts and are not version-controlled.
-python/devices_full.csv
-python/member_devices_full.csv
-python/members_full.csv
+python/data_generation/devices_full.csv
+python/data_generation/member_devices_full.csv
+python/data_generation/members_full.csv
+
+#Python cache files
+__pycache__/
+*.py[cod]

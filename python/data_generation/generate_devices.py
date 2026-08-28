@@ -19,7 +19,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 DEVICES_PATH = SCRIPT_DIR / "devices_catalog.csv"
 
 # Output Path 
-REPO_ROOT = Path(__file__).resolve().parents[1]  # REPO_ROOT => top of git project CWD
+REPO_ROOT = Path(__file__).resolve().parents[2]  # REPO_ROOT => top of git project CWD
 OUTPUT_PATH = REPO_ROOT / "data" / "raw" / "devices_raw.csv"
 
 

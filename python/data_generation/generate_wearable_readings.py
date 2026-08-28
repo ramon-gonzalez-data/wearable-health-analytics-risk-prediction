@@ -22,7 +22,7 @@ MEMBERS_PATH = SCRIPT_DIR / "members_full.csv"
 MEMBER_DEVICES_PATH = SCRIPT_DIR / "member_devices_full.csv"
 
 # Output Path
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_PATH = REPO_ROOT / "data" / "raw" / "wearable_readings_raw.csv"
 
 #############################

@@ -24,7 +24,7 @@ CITIES_PATH      = SCRIPT_DIR / "cities.txt"
 
 
 # Output Path 
-REPO_ROOT = Path(__file__).resolve().parents[1]  # REPO_ROOT => top of git project CWD
+REPO_ROOT = Path(__file__).resolve().parents[2]  # REPO_ROOT => top of git project CWD
 OUTPUT_PATH = REPO_ROOT / "data" / "raw" / "members_raw.csv"
 
 
